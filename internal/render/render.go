@@ -7,8 +7,10 @@ import (
 	"log"
 	"net/http"
 	"path/filepath"
+
 	"github.com/girdhar1982/appointment-system/config"
-	"github.com/girdhar1982/appointment-system/pkg/models"
+	"github.com/girdhar1982/appointment-system/internal/models"
+	"github.com/justinas/nosurf"
 )
 var app *config.AppConfig
 //NewTemplates sets the config for the template package
@@ -16,12 +18,13 @@ func NewTemplates(a *config.AppConfig){
 app=a
 }
 
-func AddDefaultData(td *models.TemplateData) *models.TemplateData {
+func AddDefaultData(td *models.TemplateData , r *http.Request) *models.TemplateData {
+	td.CSRFToken = nosurf.Token(r)
 	return td
 }
 
 // render template
-func RenderTemplates(w http.ResponseWriter, tmpl string,td *models.TemplateData) {
+func RenderTemplates(w http.ResponseWriter, r *http.Request,tmpl string,td *models.TemplateData) {
 	var tc  map[string] *template.Template
 	//get the template cache from the app config
 	if app.UseCache {
@@ -37,7 +40,7 @@ func RenderTemplates(w http.ResponseWriter, tmpl string,td *models.TemplateData)
 
 	buf := new(bytes.Buffer); //additional errro checking optional
 
-	td = AddDefaultData(td)
+	td = AddDefaultData(td,r)
 	err := t.Execute(buf,td)
 	if err != nil {
 		log.Println(err)

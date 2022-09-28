@@ -1,0 +1,55 @@
+{{template "base" .}}
+
+{{define "content"}}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+        <h1 class="text-center mt-4">Search for Availability</h1>
+        <form action="/search-availability" method="post" novalidate class="needs-validation">
+          <input type="text" name="csrf_token" value="{{.CSRFToken}}">
+          <div class="form-row">
+            <div class="col-lg-12">
+              <div class="form-row" id="date-range">
+                <div class="col">
+
+                  <input required type="text" class="form-control" name="start" id="start_date"
+                    aria-describedby="startDateHelp" placeholder="Arrival">
+
+                </div>
+                <div class="col">
+                  <input required type="text" class="form-control" name="end" id="end_date"
+                    aria-describedby="endDateHelp" placeholder="Departure">
+
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+              </div>
+            </div>
+          </div>
+          <button id="avail-check" type="submit" class="btn btn-primary ml-6 mt-2">Availability</button>
+        </form>
+      </div>
+    </div>
+
+    <p>{{if ne (index .StringMap "start") ""}}
+      Your Start Date {{index .StringMap "start"}}
+      {{else}}
+      {{end}}
+      <p>{{if ne (index .StringMap "end") ""}}
+        Your End Date {{index .StringMap "end"}}
+        {{else}}
+        {{end}}
+
+  </div>
+ {{end}}
+ {{define "js"}}
+ <script>
+     const elem = document.getElementById('date-range');
+    const dateRangePicker = new DateRangePicker(elem, {
+     format: 'dd/mm/yyyy'
+     });
+</script>
+ {{end}}

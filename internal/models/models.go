@@ -10,3 +10,8 @@ type TemplateData struct {
 	Warning   string
 	Error     string
 }
+
+type JsonAvailability struct{
+	Ok bool `json:"ok"`
+	Message string `json:"message"`
+}

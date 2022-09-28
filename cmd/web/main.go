@@ -8,8 +8,8 @@ import (
 
 	"github.com/alexedwards/scs/v2"
 	"github.com/girdhar1982/appointment-system/config"
-	"github.com/girdhar1982/appointment-system/pkg/handlers"
-	"github.com/girdhar1982/appointment-system/pkg/render"
+	"github.com/girdhar1982/appointment-system/internal/handlers"
+	"github.com/girdhar1982/appointment-system/internal/render"
 )
 
 const portNumber = ":8080"

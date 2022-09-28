@@ -1,0 +1,38 @@
+{{template "base" .}}
+{{define "content"}}
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1 class="text-center mt-4">Make Booking</h1>
+        <form action="" method="POST" class="needs-validation" novalidate>
+          <div class="form-group">
+            <label for="first_name">First Name</label>
+            <input required type="text" class="form-control" name="first_name" id="first_name" autocomplete="off"
+              aria-describedby="firstNameHelp">
+            <small id="firstNameHelp" class="form-text text-muted">Enter FirstName.</small>
+          </div>
+          <div class="form-group">
+            <label for="last_name">Last Name</label>
+            <input required type="text" class="form-control" name="last_name" id="last_name" autocomplete="off"
+              aria-describedby="lastNameHelp">
+            <small id="lastNameHelp" class="form-text text-muted">Enter LastName.</small>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input required type="email" class="form-control" name="email" id="email" autocomplete="off"
+              aria-describedby="emailHelp">
+            <small id="emailHelp" class="form-text text-muted">Enter Email Address.</small>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input required type="text" class="form-control" name="phone" id="phone" autocomplete="off"
+              aria-describedby="phoneHelp">
+            <small id="phoneHelp" class="form-text text-muted">Enter Phone Number.</small>
+          </div>
+          <button type="submit"  class="btn btn-primary">Book</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  {{end}}
